@@ -22,4 +22,10 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VpcCurso
-      CidrBlock: 10.0.3.0/24 
+      CidrBlock: 10.0.3.0/24
+      
+  SubnetC:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VpcCurso
+      CidrBlock: 10.0.4.0/24 
