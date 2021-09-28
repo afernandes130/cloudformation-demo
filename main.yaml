@@ -63,7 +63,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       Subscription:
-        Endpoint: "afernandes130@hotmail.com"
-        Protocol: email
+        - Endpoint: "afernandes130@hotmail.com"
+          Protocol: email
       TopicName: "TopicoSns"
   
