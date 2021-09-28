@@ -93,7 +93,6 @@ Resources:
           CidrIp: 0.0.0.0/0
       VpcId: !Ref VpcCurso
 
-
   Outputs:
     Bucket:
       Value: !Ref Bucket
