@@ -52,12 +52,12 @@ Resources:
       RouteTableId: !Ref RouteTable
       SubnetId: !Ref SubnetA
 
-  InstanceZA:
-    Type: AWS::EC2::Instance
-    Properties:
-      ImageId: ami-0c2d06d50ce30b442
-      InstanceType: t3.micro
-      SubnetId: !Ref SubnetA
+  # InstanceZA:
+  #   Type: AWS::EC2::Instance
+  #   Properties:
+  #     ImageId: ami-0c2d06d50ce30b442
+  #     InstanceType: t3.micro
+  #     SubnetId: !Ref SubnetA
 
   TopicoSns:
     Type: AWS::SNS::Topic
@@ -66,4 +66,9 @@ Resources:
         - Endpoint: "afernandes130@hotmail.com"
           Protocol: email
       TopicName: "TopicoSns"
-  
+
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: s3bucketAdriano  
