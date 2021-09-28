@@ -59,4 +59,11 @@ Resources:
       InstanceType: t3.micro
       SubnetId: !Ref SubnetA
 
+  TopicoSns:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        Endpoint: "afernandes130@hotmail.com"
+        Protocol: email
+      TopicName: "TopicoSns"
   
