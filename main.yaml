@@ -93,8 +93,9 @@ Resources:
           CidrIp: 0.0.0.0/0
       VpcId: !Ref VpcCurso
 
-  Outputs:
-    Bucket:
-      Value: !Ref BucketCode
-    StackName:
-      Value: !Ref AWS::StackName
+Outputs:
+  Bucket:
+    Value: !Ref BucketCode
+  StackName:
+    Value: !Ref AWS::StackName
+
