@@ -52,7 +52,7 @@ Resources:
       RouteTableId: !Ref RouteTable
       SubnetId: !Ref SubnetA
 
-  Instance:
+  InstanceZA:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-0c2d06d50ce30b442
