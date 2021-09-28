@@ -67,7 +67,7 @@ Resources:
           Protocol: email
       TopicName: "TopicoSns"
 
-  BucketCode:
+  Bucket:
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: Private
@@ -95,7 +95,7 @@ Resources:
 
 Outputs:
   Bucket:
-    Value: !Ref BucketCode
+    Value: !Ref Bucket
   StackName:
     Value: !Ref AWS::StackName
 
