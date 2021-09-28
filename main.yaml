@@ -52,4 +52,11 @@ Resources:
       RouteTableId: !Ref RouteTable
       SubnetId: !Ref SubnetA
 
+  Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c2d06d50ce30b442
+      InstanceType: t2.micro
+      SubnetId: !Ref SubnetA
+
   
