@@ -71,7 +71,16 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: Private
-      BucketName: s3bucket-adriano  
+      BucketName: s3bucket-adriano
+      LifecycleConfiguration:
+        Rules:
+          - Id: Glacier
+            Prefix: relatorio
+            Status: Enabled
+            ExpirationInDays: 365
+            Transitions:
+              - StorageClass: GLACIER
+                TransitionInDays: 1
 
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -83,3 +92,4 @@ Resources:
           ToPort: '22'
           CidrIp: 0.0.0.0/0
       VpcId: !Ref VpcCurso
+
