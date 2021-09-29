@@ -1,56 +1,66 @@
 Resources:
-  VpcCurso:
-    Type: "AWS::EC2::VPC"
+  StackA:
+    Type: AWS::CloudFormation::Stack
     Properties:
-      CidrBlock: "10.0.0.0/16"
-      EnableDnsSupport: 'true'
-      EnableDnsHostnames: 'true'
+      TemplateURL: stacks/a.yaml
+  StackB:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: stacks/b.yaml
 
-  SubnetA:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VpcCurso
-      CidrBlock: 10.0.1.0/24
+# Resources:
+#   VpcCurso:
+#     Type: "AWS::EC2::VPC"
+#     Properties:
+#       CidrBlock: "10.0.0.0/16"
+#       EnableDnsSupport: 'true'
+#       EnableDnsHostnames: 'true'
 
-  SubnetB:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VpcCurso
-      CidrBlock: 10.0.2.0/24
+#   SubnetA:
+#     Type: AWS::EC2::Subnet
+#     Properties:
+#       VpcId: !Ref VpcCurso
+#       CidrBlock: 10.0.1.0/24
 
-  SubnetC:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VpcCurso
-      CidrBlock: 10.0.3.0/24
+#   SubnetB:
+#     Type: AWS::EC2::Subnet
+#     Properties:
+#       VpcId: !Ref VpcCurso
+#       CidrBlock: 10.0.2.0/24
+
+#   SubnetC:
+#     Type: AWS::EC2::Subnet
+#     Properties:
+#       VpcId: !Ref VpcCurso
+#       CidrBlock: 10.0.3.0/24
     
-  InternetGateway:
-    Type: AWS::EC2::InternetGateway
+#   InternetGateway:
+#     Type: AWS::EC2::InternetGateway
   
-  VPCGatewayAttachment:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-      VpcId: !Ref VpcCurso
-      InternetGatewayId: !Ref InternetGateway
+#   VPCGatewayAttachment:
+#     Type: AWS::EC2::VPCGatewayAttachment
+#     Properties:
+#       VpcId: !Ref VpcCurso
+#       InternetGatewayId: !Ref InternetGateway
 
-  RouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref VpcCurso
+#   RouteTable:
+#     Type: AWS::EC2::RouteTable
+#     Properties:
+#       VpcId: !Ref VpcCurso
 
-  Route:
-    Type: AWS::EC2::Route
-    DependsOn: InternetGateway
-    Properties:
-      RouteTableId: !Ref RouteTable
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref InternetGateway
+#   Route:
+#     Type: AWS::EC2::Route
+#     DependsOn: InternetGateway
+#     Properties:
+#       RouteTableId: !Ref RouteTable
+#       DestinationCidrBlock: 0.0.0.0/0
+#       GatewayId: !Ref InternetGateway
       
-  SubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref SubnetA
+#   SubnetRouteTableAssociation:
+#     Type: AWS::EC2::SubnetRouteTableAssociation
+#     Properties:
+#       RouteTableId: !Ref RouteTable
+#       SubnetId: !Ref SubnetA
 
   # InstanceZA:
   #   Type: AWS::EC2::Instance
@@ -59,47 +69,47 @@ Resources:
   #     InstanceType: t3.micro
   #     SubnetId: !Ref SubnetA
 
-  TopicoSns:
-    Type: AWS::SNS::Topic
-    Properties:
-      Subscription:
-        - Endpoint: "afernandes130@hotmail.com"
-          Protocol: email
-      TopicName: "TopicoSns"
+  # TopicoSns:
+  #   Type: AWS::SNS::Topic
+  #   Properties:
+  #     Subscription:
+  #       - Endpoint: "afernandes130@hotmail.com"
+  #         Protocol: email
+  #     TopicName: "TopicoSns"
 
-  Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: Private
-      BucketName: s3bucket-adriano
-      LifecycleConfiguration:
-        Rules:
-          - Id: Glacier
-            Prefix: relatorio
-            Status: Enabled
-            ExpirationInDays: 365
-            Transitions:
-              - StorageClass: GLACIER
-                TransitionInDays: 1
+  # Bucket:
+  #   Type: AWS::S3::Bucket
+  #   Properties:
+  #     AccessControl: Private
+  #     BucketName: s3bucket-adriano
+  #     LifecycleConfiguration:
+  #       Rules:
+  #         - Id: Glacier
+  #           Prefix: relatorio
+  #           Status: Enabled
+  #           ExpirationInDays: 365
+  #           Transitions:
+  #             - StorageClass: GLACIER
+  #               TransitionInDays: 1
 
-  SecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Libera porta 22
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: 0.0.0.0/0
-      VpcId: !Ref VpcCurso
+  # SecurityGroup:
+  #   Type: AWS::EC2::SecurityGroup
+  #   Properties:
+  #     GroupDescription: Libera porta 22
+  #     SecurityGroupIngress:
+  #       - IpProtocol: tcp
+  #         FromPort: '22'
+  #         ToPort: '22'
+  #         CidrIp: 0.0.0.0/0
+  #     VpcId: !Ref VpcCurso
 
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-  StackName:
-    Value: !Ref AWS::StackName
-  StackId:
-    Value: !Ref AWS::StackId
-  Region:
-    Value: !Ref AWS::Region
+# Outputs:
+#   Bucket:
+#     Value: !Ref Bucket
+#   StackName:
+#     Value: !Ref AWS::StackName
+#   StackId:
+#     Value: !Ref AWS::StackId
+#   Region:
+#     Value: !Ref AWS::Region
 

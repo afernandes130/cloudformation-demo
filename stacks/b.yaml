@@ -1,0 +1,40 @@
+InstanceZA:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c2d06d50ce30b442
+      InstanceType: t3.micro
+      SubnetId: "Fn::ImportValue": SubnetA"
+
+  TopicoSns:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint: "afernandes130@hotmail.com"
+          Protocol: email
+      TopicName: "TopicoSns"
+
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: s3bucket-adriano
+      LifecycleConfiguration:
+        Rules:
+          - Id: Glacier
+            Prefix: relatorio
+            Status: Enabled
+            ExpirationInDays: 365
+            Transitions:
+              - StorageClass: GLACIER
+                TransitionInDays: 1
+
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Libera porta 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+      VpcId: "Fn::ImportValue": VpcCurso"
