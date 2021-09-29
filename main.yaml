@@ -2,11 +2,11 @@ Resources:
   StackA:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: stacks/a.yaml
+            TemplatePath: 'my-pipeline-stack::a.yaml'
   StackB:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: stacks/b.yaml
+      TemplatePath: 'my-pipeline-stack::b.yaml'
 
 # Resources:
 #   VpcCurso:
