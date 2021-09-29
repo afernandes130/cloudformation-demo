@@ -1,12 +1,14 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
 Resources:
   StackA:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: ./a.yaml
+      TemplateUri: ./a.yaml
   StackB:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: ./b.yaml
+      TemplateUri: ./b.yaml
 
 # Resources:
 #   VpcCurso:
