@@ -2,12 +2,11 @@ Resources:
   StackA:
     Type: AWS::CloudFormation::Stack
     Properties:
-            TemplatePath: 'SourceArtifact::::a.yaml'
+      TemplateURL: a.yaml
   StackB:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplatePath: 'SourceArtifact::b.yaml'
-
+      TemplateURL: b.yaml
 
 # Resources:
 #   VpcCurso:
