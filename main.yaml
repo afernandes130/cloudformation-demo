@@ -10,6 +10,7 @@ Resources:
     Properties:
       TemplateUri: ./b.yaml
 
+
 # Resources:
 #   VpcCurso:
 #     Type: "AWS::EC2::VPC"
