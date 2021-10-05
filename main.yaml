@@ -2,9 +2,13 @@ Parameters:
   VPCCIRD:
     Type: String
     AllowedPattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
-    ConstraintDescription: "IP para o VPC invalido.",
+    ConstraintDescription: "IP para o VPC invalido."
     Description": "Defina um range de IP valido para o VPC."
       
+Parameters:
+  ParameterLogicalID:
+    Type: DataType
+    ParameterProperty: value
 
 Resources:
   VpcCurso:
