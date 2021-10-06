@@ -19,7 +19,7 @@ Resources:
         - Key: Name
           Value: !Join
                   - ''
-                  - - 'vpc-'
+                  - - 'vpccomric-'
                     - !Ref AMBIENTE
 
 #   SubnetA:
