@@ -4,15 +4,23 @@ Parameters:
     AllowedPattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
     ConstraintDescription: "IP para o VPC invalido."
     Description: "Defina um range de IP valido para o VPC."
+  AMBIENTE:
+    Type: String
+    Description: "Defina nome do ambiente para qual a stack sera criada."
 
 Resources:
   VpcCurso:
     Type: "AWS::EC2::VPC"
     Properties:
-#      CidrBlock: "10.0.0.0/16"
       CidrBlock: !Ref VPCCIRD
       EnableDnsSupport: 'true'
       EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Name
+          Value: !Join
+                  - ''
+                  - - 'vpc'
+                    - !Ref AMBIENTE
 
 #   SubnetA:
 #     Type: AWS::EC2::Subnet
