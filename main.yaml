@@ -25,7 +25,7 @@ Resources:
           Value: !Join
                   - ''
                   - - 'vpc-'
-                    - !Ref AMBIENTE
+                    - !Ref Ambiente
   Subnet1:
     Type: AWS::EC2::Subnet
     Properties:
