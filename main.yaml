@@ -41,6 +41,21 @@ Resources:
       VpcId: !Ref VpcCurso
       InternetGatewayId: !Ref InternetGateway
 
+  RDSPostgreSQL:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBName: !Join ["-",["rds-demo-", "!Ref Ambiente"]]
+      MasterUsername: "sa"
+      MasterUserPassword: "1234abcd@"
+      Engine: PostgreSQL
+      DBInstanceClass: db.t2.micro
+      StorageType: gp2
+      PubliclyAccessible: True
+      AllocatedStorage: 20
+      DBInstanceIdentifier: !Join ["-",["rds-demo-", "!Ref Ambiente", !Ref "AWS::Region"]]
+      AvailabilityZone: !Select [1, !GetAZs ""]
+      
+
   # RouteTable:
   #   Type: AWS::EC2::RouteTable
   #   Properties:
@@ -101,9 +116,12 @@ Resources:
   #         CidrIp: 0.0.0.0/0
   #     VpcId: !Ref VpcCurso
 
-# Outputs:
-#   Bucket:
-#     Value: !Ref Bucket
+Outputs:
+  DatabaseEndPoint:
+    Description: "Endpoint para conexão com RDS"
+    Value: !GetAtt RDSPostgreSQL.Endpoint.Address
+  # Bucket:
+  #   Value: !Ref Bucket
 #   StackName:
 #     Value: !Ref AWS::StackName
 #   StackId:
