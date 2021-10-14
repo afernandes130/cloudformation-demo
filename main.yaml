@@ -41,10 +41,10 @@ Resources:
       VpcId: !Ref VpcCurso
       InternetGatewayId: !Ref InternetGateway
 
-  RouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref VpcCurso
+  # RouteTable:
+  #   Type: AWS::EC2::RouteTable
+  #   Properties:
+  #     VpcId: !Ref VpcCurso
 
   Route:
     Type: AWS::EC2::Route
@@ -54,11 +54,11 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
       
-  SubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref RouteTable
-      SubnetId: !Ref Subnet1
+  # SubnetRouteTableAssociation:
+  #   Type: AWS::EC2::SubnetRouteTableAssociation
+  #   Properties:
+  #     RouteTableId: !Ref RouteTable
+  #     SubnetId: !Ref Subnet1
 
   # InstanceZA:
   #   Type: AWS::EC2::Instance
