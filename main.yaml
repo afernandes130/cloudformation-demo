@@ -44,7 +44,7 @@ Resources:
   RDSPostgreSQL:
     Type: AWS::RDS::DBInstance
     Properties:
-      DBName: !Join ["-",["rds-demo-", "!Ref Ambiente"]]
+      DBName: !Join ["",["dbdemo", "!Ref Ambiente"]]
       MasterUsername: "sa"
       MasterUserPassword: "1234abcd@"
       Engine: postgres
