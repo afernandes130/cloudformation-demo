@@ -52,7 +52,7 @@ Resources:
       StorageType: gp2
       PubliclyAccessible: True
       AllocatedStorage: 20
-      DBInstanceIdentifier: !Join ["-",["rds-demo-", "!Ref Ambiente", !Ref "AWS::Region"]]
+      DBInstanceIdentifier: !Join ["-",["rds-demo", !Ref Ambiente, !Ref "AWS::Region"]]
       AvailabilityZone: !Select [1, !GetAZs ""]
       
 
