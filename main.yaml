@@ -46,7 +46,7 @@ Resources:
     Properties:
       DBName: "databaseName"
       MasterUsername: "sa"
-      MasterUserPassword: "1234abcd@"
+      MasterUserPassword: "1234abcd"
       Engine: postgres
       EngineVersion: "12.8"
       DBInstanceClass: db.t2.micro
