@@ -46,13 +46,13 @@ Resources:
   #   Properties:
   #     VpcId: !Ref VpcCurso
 
-  Route:
-    Type: AWS::EC2::Route
-    DependsOn: InternetGateway
-    Properties:
-      RouteTableId: !Ref RouteTable
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref InternetGateway
+  # Route:
+  #   Type: AWS::EC2::Route
+  #   DependsOn: InternetGateway
+  #   Properties:
+  #     RouteTableId: !Ref RouteTable
+  #     DestinationCidrBlock: 0.0.0.0/0
+  #     GatewayId: !Ref InternetGateway
       
   # SubnetRouteTableAssociation:
   #   Type: AWS::EC2::SubnetRouteTableAssociation
