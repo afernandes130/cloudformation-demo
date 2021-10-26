@@ -4,7 +4,12 @@ Parameters:
     AllowedPattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
     ConstraintDescription: "IP para o VPC invalido."
     Description: "Defina um range de IP valido para o VPC."
-  SubnetCIRD:
+  Subnet1CIRD:
+    Type: String
+    AllowedPattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
+    ConstraintDescription: "IP para a subnet invalido."
+    Description: "Defina um range de IP valido para o a subnet."
+  Subnet2CIRD:
     Type: String
     AllowedPattern: "^([0-9]{1,3}\\.){3}[0-9]{1,3}(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
     ConstraintDescription: "IP para a subnet invalido."
@@ -26,12 +31,19 @@ Resources:
                   - ''
                   - - 'vpc-'
                     - !Ref Ambiente
+                    
   Subnet1:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VpcCurso
-      CidrBlock: !Ref SubnetCIRD    
-  
+      CidrBlock: !Ref Subnet1CIRD    
+
+  Subnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VpcCurso
+      CidrBlock: !Ref Subnet2CIRD
+
   InternetGateway:
     Type: AWS::EC2::InternetGateway
   
@@ -48,6 +60,7 @@ Resources:
       DBSubnetGroupName: !Join ["-",["subnetgroup-demo", !Ref Ambiente]]
       SubnetIds: 
         - Ref: Subnet1
+        - Ref: Subnet2
 
   RDSPostgreSQL:
     Type: AWS::RDS::DBInstance
