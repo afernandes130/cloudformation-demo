@@ -20,8 +20,10 @@ Parameters:
 
 Resources:
   VpcCurso:
+
     Type: "AWS::EC2::VPC"
     Properties:
+      
       CidrBlock: !Ref VPCCIRD
       EnableDnsSupport: 'true'
       EnableDnsHostnames: 'true'
@@ -35,12 +37,20 @@ Resources:
   Subnet1:
     Type: AWS::EC2::Subnet
     Properties:
+      AvailabilityZone: 
+        Fn::Select: 
+          - 0
+          - Fn::GetAZs: ""
       VpcId: !Ref VpcCurso
       CidrBlock: !Ref Subnet1CIRD    
 
   Subnet2:
     Type: AWS::EC2::Subnet
     Properties:
+      AvailabilityZone: 
+        Fn::Select: 
+          - 1
+          - Fn::GetAZs: ""
       VpcId: !Ref VpcCurso
       CidrBlock: !Ref Subnet2CIRD
 
