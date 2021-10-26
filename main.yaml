@@ -87,7 +87,7 @@ Resources:
       DBInstanceIdentifier: !Join ["-",["rds-demo", !Ref Ambiente, !Ref "AWS::Region"]]
       AvailabilityZone: !Select [1, !GetAZs ""]
       DBSubnetGroupName: !Ref SubNetGroup
-      DeleteAutomatedBackups: 0
+      BackupRetentionPeriod: 0
       
       
 
