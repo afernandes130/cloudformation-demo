@@ -41,6 +41,13 @@ Resources:
       VpcId: !Ref VpcCurso
       InternetGatewayId: !Ref InternetGateway
 
+  SubNetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties: 
+      DBSubnetGroupName: !Join ["-",["subnetgroup-demo", !Ref Ambiente]]
+      SubnetIds: 
+        - Ref: Subnet1
+
   RDSPostgreSQL:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -55,6 +62,9 @@ Resources:
       AllocatedStorage: 20
       DBInstanceIdentifier: !Join ["-",["rds-demo", !Ref Ambiente, !Ref "AWS::Region"]]
       AvailabilityZone: !Select [1, !GetAZs ""]
+      DBSubnetGroupName: !Ref SubNetGroup
+      DeleteAutomatedBackups: 0
+      
       
 
   # RouteTable:
