@@ -44,6 +44,7 @@ Resources:
   SubNetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties: 
+      DBSubnetGroupDescription: "Grupo de subnets para alocar o rds"
       DBSubnetGroupName: !Join ["-",["subnetgroup-demo", !Ref Ambiente]]
       SubnetIds: 
         - Ref: Subnet1
